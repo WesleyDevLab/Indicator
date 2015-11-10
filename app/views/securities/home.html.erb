@@ -1,0 +1,21 @@
+Using historical look up
+<br/>
+<%= @my_stocks.symbol %>
+<br/>
+<%= @my_stocks.output.last[:date] %>
+<br/>
+close = <%= @my_stocks.output.last[:close] %>
+<br/>
+open = <%= @my_stocks.output.last[:open] %>
+<br/>
+high = <%= @my_stocks.output.last[:high] %>
+<br/>
+low = <%= @my_stocks.output.last[:low] %>
+<br/>
+<br/>
+
+Using current look up
+<br/>
+symbol = <%= @my_lookup.output.select {|result| result[:symbol] == 'SPY'}.last[:symbol] %>
+<br/>
+last trade = <%= @my_lookup.output.select {|result| result[:symbol] == 'SPY'}.last[:last_trade] %>
