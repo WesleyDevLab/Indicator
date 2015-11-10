@@ -12,6 +12,8 @@ high = <%= @my_stocks.output.last[:high] %>
 <br/>
 low = <%= @my_stocks.output.last[:low] %>
 <br/>
+volume = <%= @my_stocks.output.last[:volume] %>
+<br/>
 <br/>
 
 Using current look up
@@ -19,3 +21,23 @@ Using current look up
 symbol = <%= @my_lookup.output.select {|result| result[:symbol] == 'SPY'}.last[:symbol] %>
 <br/>
 last trade = <%= @my_lookup.output.select {|result| result[:symbol] == 'SPY'}.last[:last_trade] %>
+<br/>
+<br/>
+
+Using historical look up
+<br/>
+<%= @sp.symbol %>
+<br/>
+<%= @sp.output.last[:date] %>
+<br/>
+close = <%= @sp.output.last[:close] %>
+<br/>
+open = <%= @sp.output.last[:open] %>
+<br/>
+high = <%= @sp.output.last[:high] %>
+<br/>
+low = <%= @sp.output.last[:low] %>
+<br/>
+volume = <%= @sp.output.last[:volume] %>
+<br/>
+<br/> 

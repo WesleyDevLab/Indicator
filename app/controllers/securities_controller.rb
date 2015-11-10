@@ -1,6 +1,7 @@
 class SecuritiesController < ApplicationController
   def home
     @my_stocks = Securities::Stock.new(:symbol => 'SPY', :start_date => 2.day.ago.to_s)
+    @sp = Securities::Stock.new(:symbol => '^GSPC', :start_date => 2.day.ago.to_s)
 
     @my_lookup = Securities::Lookup.new('SPY')
 
