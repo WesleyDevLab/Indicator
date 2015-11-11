@@ -52,3 +52,4 @@ end
 
 gem 'securities'
 gem 'indicators'
+gem 'stock_quote'
