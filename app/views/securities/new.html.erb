@@ -1,0 +1,11 @@
+<br/>
+<br/>
+<br/>
+<div class="search-box col-xs-3 col-xs-offset-4">
+  <%= simple_form_for @security do |f| %>
+    <%= f.input :symbol, label: false, placeholder: 'enter symbol' %>
+    <br/>
+    <%= f.button :submit, "Analyze" %>
+  <% end %>
+</div>
+
