@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Stock Helper</title>
+  <title>Market Analyzer</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Stock Helper', root_url, :class => 'navbar-brand' %>
+      <%= link_to 'Market Analyzer', root_url, :class => 'navbar-brand' %>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,6 +27,11 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="#">Link</a></li> -->
       </ul>
+      <%= form_tag securities_path, :class => 'navbar-form navbar-right' do %>
+        <%= text_field_tag :symbol, nil, 
+          {:class => "search-query form-control", :placeholder => "Symbol"} %>
+        <%= submit_tag "Analzye", :class => "btn btn-default" %>
+      <% end %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

@@ -1,31 +1,47 @@
-<p><%= @quote.name %></p>
-<p><%= @quote.stock_exchange %></p>
-<p><%= @quote.symbol %></p>
-<p><%= @quote.last_trade_price_only %></p>
-<p><%= @quote.change %></p>
-<p><%= @quote.percent_change %></p>
-<p><%= @quote.days_low %></p>
-<p><%= @quote.days_high %></p>
-<p><%= @quote.open %></p>
-<p><%= @quote.volume %></p>
-<p><%= @quote.market_capitalization %></p>
-<p><%= @quote.pe_ratio %></p>
-<p><%= @quote.average_daily_volume %></p>
-<p><%= @quote.earnings_share %></p>
-<p><%= @quote.fiftyday_moving_average %></p>
-<p><%= @quote.two_hundredday_moving_average %></p>
-
-<h2>Moving Average</h2>
-<p><%= @sma.round(2) %></p>
- 
-<h2>Bollinger Bands</h2>
-<p><%= "Upper: #{@bbs[1].round(2)}, Lower: #{@bbs[2].round(2)}" %></p>
-
-<h2>Moving Average Convergence Divergence (MACD)</h2>
-<p><%= "MACD line: #{@macd[0].round(2)}, Signal line: #{@macd[1].round(2)}, MACD histogram: #{@macd[2].round(2)}" %></p>
-
-<h2>Relative Strength Index (RSI)</h2>
-<p><%= @rsi.round(2) %></p>
-
-<h2>Full Stochastic Oscillator</h2>
-<p><%= "Fast: #{@sto[0].round(2)}%K, Slow: #{@sto[1].round(2)}%K, Full: #{@sto[2].round(2)}%D" %></p>
+<br/>
+<br/>
+<div class="stock-info col-xs-8 col-xs-offset-2">
+  <br/>
+  <div class="col-xs-8 col-xs-offset-2">
+    <h1><%= @quote.name %></h1><br/>
+    <h4>Symbol: <%= @quote.symbol %></h4>
+    <h4>Exchange: <%= @quote.stock_exchange %></h4>
+    <h4>Last Trade: <%= @quote.last_trade_price_only %></h4>
+    <h4>Change: <%= @quote.change %></h4>
+    <h4>Change: <%= @quote.percent_change %></h4>
+    <h4>Low: <%= @quote.days_low %></h4>
+    <h4>High: <%= @quote.days_high %></h4>
+    <h4>Open: <%= @quote.open %></h4>
+    <h4>Volume: <%= @quote.volume %></h4>
+    <h4>Averge Daily Volume: <%= @quote.average_daily_volume %></h4>
+    <h4>Market Cap:<%= @quote.market_capitalization %></h4>
+    <h4>PE Ratio: <%= @quote.pe_ratio %></h4>
+    <h4>Earnings per share: <%= @quote.earnings_share %></h4>
+    <h4>50 Day Moving Average: <%= @quote.fiftyday_moving_average %></h4>
+    <h4>200 Day Moving Average: <%= @quote.two_hundredday_moving_average %></h4>
+  </div>
+</div> 
+<br class="clear" />
+<br/>
+<br/>
+<div class="stock-info col-xs-8 col-xs-offset-2">
+  <br/>
+  <div class="col-xs-8 col-xs-offset-2">
+    <h1>Technicals</h1><br/>
+    <h4>Moving Average</h4>
+    <h4><%= @sma.round(2) %></h4><br/>
+    <h4>Bollinger Bands</h4>
+    <h4>Upper: <%= @bb[1].round(2) %></h4>
+    <h4>Lower: <%= @bb[2].round(2) %></h4><br/>
+    <h4>Moving Average Convergence Divergence (MACD)</h4>
+    <h4>MACD line: <%= @macd[0].round(2) %></h4>
+    <h4>Signal line: <%= @macd[1].round(2) %></h4>
+    <h4>MACD histogram: <%= @macd[2].round(2) %></h4><br/>
+    <h4>Relative Strength Index (RSI)</h4>
+    <h4><%= @rsi.round(2) %></h4><br/>
+    <h4>Full Stochastic Oscillator</h4>
+    <h4>Fast: <%= @sto[0].round(2) %> %K</h4>
+    <h4>Slow: <%= @sto[1].round(2) %> %</h4>
+    <h4>Full: <%= @sto[2].round(2) %> %</h4>
+  </div>
+</div>

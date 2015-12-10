@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'securities#new'
 
-  resource :securities, only: [:new, :create, :show]
+  resource :securities, only: [:new, :create]
 
   # get 'securities/show', to: 'securities#show', as: 'securities/show'
   # The priority is based upon order of creation: first created -> highest priority.

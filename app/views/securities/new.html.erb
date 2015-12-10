@@ -1,11 +1,9 @@
-<br/>
-<br/>
-<br/>
-<div class="search-box col-xs-3 col-xs-offset-4">
-  <%= simple_form_for @security do |f| %>
-    <%= f.input :symbol, label: false, placeholder: 'enter symbol' %>
-    <br/>
-    <%= f.button :submit, "Analyze" %>
+<div class="home-page col-xs-8 col-xs-offset-2 ">
+  <h1>Technical Analysis Made Simple</h1>
+  <br/>
+  <%= form_tag securities_path, :class => 'navbar-form navbar-center' do %>
+  <%= text_field_tag :symbol, nil, 
+    {:class => "search-query form-control", :placeholder => "Symbol"} %>
+  <%= submit_tag "Analzye", :class => "btn btn-default" %>
   <% end %>
 </div>
-

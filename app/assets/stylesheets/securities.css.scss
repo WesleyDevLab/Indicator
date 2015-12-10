@@ -3,11 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  background: url('background.jpg') no-repeat center center fixed;;
+  background: url('background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.stock-info {
+  background:rgba(0,0,0, 0.5);
+  color:white;
+  text-shadow: rgba(0,0,0,0.95) 1px 1px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .search-box {
@@ -19,5 +27,23 @@ body {
 
   input.btn {
     background: black;
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+.home-page {
+  background:rgba(255,255,255, 0.5);
+  text-shadow: rgba(0,0,0,0.95) 1px 1px;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 100px;
+}
+
+.navbar.navbar-inverse {
+  .navbar-brand {
   }
 }

@@ -4,36 +4,53 @@ class SecuritiesController < ApplicationController
   end
 
   def create
-    symbol = params[:security][:symbol]
-    @quote = StockQuote::Stock.quote(symbol)
+    security = Security.new
+    indicator = Indicator.new
+    symbol = params[:symbol]
+    @quote = security.get_quote(symbol)
     
-    history = Securities::Stock.new(:symbol => symbol, :start_date => 60.day.ago.to_s)
-    indicator = Indicators::Data.new(history.output)
-    @sma = indicator.calc(:type => :sma, :params => 5).output.last
-    @bbs = indicator.calc(:type => :bb, :params => [15, 3]).output.last
-    @macd = indicator.calc(:type => :macd, :params => [12, 26, 9]).output.last
-    @rsi = indicator.calc(:type => :rsi, :params => 29).output.last
-    @sto = indicator.calc(:type => :sto, :params => [14, 3, 5]).output.last
+    history = security.get_history(symbol, 60)
+
+    indicators = security.get_indicators(history)
+    @sma = indicator.get_ema(indicators, 5)
+    @bb = indicator.get_bb(indicators, 15, 3)
+    @macd = indicator.get_macd(indicators, 12, 26, 9)
+    @rsi = indicator.get_rsi(indicators, 29)
+    @sto = indicator.get_sto(indicators, 14, 3, 5)
   end
 
-  # def show
-  #   @quote = StockQuote::Stock.quote(params[:security][:name])
-  # end
+  def support_resistance
 
-    
+    # Get historical quotes
+    history_arr = Securities::Stock.new(:symbol => "goog", :start_date => 120.day.ago.to_s)
 
-  #   @my_stocks = Securities::Stock.new(:symbol => 'SPY', :start_date => 2.day.ago.to_s)
-  #   @sp = Securities::Stock.new(:symbol => '^GSPC', :start_date => 2.day.ago.to_s)
+    # Get the prices into one array
+    price_arr = []
+    history_arr.output.each do |quote|
+      price_arr.push(quote[:close].to_f)
+    end
 
-  #   @my_lookup = Securities::Lookup.new('SPY')
+    # Break timeseries into segments of N prices
+    price_segment_arr = []
+    price_arr.each_slice(10) {|price| price_segment_arr.push(price)}
 
-  #   @my_data = Indicators::Data.new(Securities::Stock.new(:symbol => 'AAPL', 
-  #     :start_date => '2015-10-01', :end_date => '2015-11-09').output)
+    # Find min of each segments
+    price_min_arr = []
+    price_segment_arr.each do |segment|
+      price_min_arr.push(segment.min)
+    end
+    price_min = price_min_arr.min
 
+    # 
+    price_support_arr = []
+    price_support_arr.push(price_min)
+    price_min_arr.each do |price|
+      if (price / price_min - 1).abs * 100 < 3
+        price_support_arr.push(price)
+      end
+    end
 
-  #   @sp500 = StockQuote::Stock.quote("^GSPC")
+    price_support_arr.sum / price_support_arr.size
 
-  #   @goog = StockQuote::Stock.quote("GOOG")
-  # end
-
+  end
 end

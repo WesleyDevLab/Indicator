@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110053358) do
+ActiveRecord::Schema.define(version: 20151210052254) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "indicators", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "quotes", force: :cascade do |t|
     t.date     "date"
@@ -25,7 +33,7 @@ ActiveRecord::Schema.define(version: 20151110053358) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "quotes", ["security_id"], name: "index_quotes_on_security_id"
+  add_index "quotes", ["security_id"], name: "index_quotes_on_security_id", using: :btree
 
   create_table "securities", force: :cascade do |t|
     t.string   "symbol"
