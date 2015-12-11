@@ -1,3 +1,0 @@
-Web application for analyzing the stock market, providing technical analysis that's simple to use.
-
-http://www.marketanalysis.tech
