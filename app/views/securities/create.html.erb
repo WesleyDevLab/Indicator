@@ -42,6 +42,10 @@
     <h4>Full Stochastic Oscillator</h4>
     <h4>Fast: <%= @sto[0].round(2) %> %K</h4>
     <h4>Slow: <%= @sto[1].round(2) %> %</h4>
-    <h4>Full: <%= @sto[2].round(2) %> %</h4>
+    <h4>Full: <%= @sto[2].round(2) %> %</h4><br/>
+    <h4>Support and Resistance</h4>
+      <% @sup_resist.each do |price, strength| %>
+        <%= "#{price}, #{strength} strength" %><br/>
+      <% end %>
   </div>
 </div>

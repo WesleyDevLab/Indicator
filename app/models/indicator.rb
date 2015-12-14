@@ -24,42 +24,56 @@ class Indicator < ActiveRecord::Base
     @sto = indicators.calc(:type => :sto, :params => [lookback, slow_k, d_ma]).output.last
   end
 
-  ### Work in Progress
-  def get_sup_resist(period, num, pct)
+  # http://stackoverflow.com/questions/8587047/support-resistance-algorithm-technical-analysis
+  def get_sup_resist(symbol, period, num, pct)
     security = Security.new
 
-    # Get historical quotes
+    # Get historical data
     history_arr = security.get_history(symbol, period)
 
-    # Get the prices into one array
+    # Extract the prices from the historical quotes
     price_arr = []
     history_arr.output.each do |quote|
       price_arr.push(quote[:close].to_f)
     end
 
-    # Break timeseries into segments of N prices
-    price_segment_arr = []
-    price_arr.each_slice(num) {|price| price_segment_arr.push(price)}
+    # Break the time series of prices into segments of num
+    segment_arr = []
+    price_arr.each_slice(num) {|price| segment_arr.push(price)}
 
-    # Find min of each segments
-    price_min_arr = []
-    price_segment_arr.each do |segment|
-      price_min_arr.push(segment.min)
+    # Find min and max price of each segments
+    segment_minmax_arr = []
+    segment_arr.each do |segment|
+      segment_minmax_arr.push(segment.min)
+      segment_minmax_arr.push(segment.max)
     end
-    price_min = price_min_arr.min
 
-    # Support is the min price and prices within pct of it
-    price_support_arr = []
-    price_support_arr.push(price_min)
-    price_min_arr.each do |price|
-      if (price / price_min - 1).abs * 100 < pct
-        price_support_arr.push(price)
+    # Loop to calculate all price levels and put into a hash
+    levels = Hash.new
+    until segment_minmax_arr.count == 0 do
+
+      # Each iteration, take the min of all mix/max prices as reference
+      # Doesn't matter if using for min or max
+      price_min = segment_minmax_arr.min
+
+      # Check other prices within a pct of it
+      support_arr = []
+      support_arr.push(price_min)
+      segment_minmax_arr.delete(price_min)
+
+      segment_minmax_arr.each do |price|
+        if (price / price_min - 1).abs * 100 < pct
+          support_arr.push(price)
+          segment_minmax_arr.delete(price)
+        end
       end
+
+      # support price and strength
+      price = (support_arr.sum / support_arr.size).round(2)
+      levels[price] = support_arr.size
     end
 
-    # support price and strength
-    support =price_support_arr.sum / price_support_arr.size
-    support_strength = price_support_arr.size
+    levels
   end
-
 end
+

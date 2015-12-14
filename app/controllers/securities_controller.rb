@@ -1,4 +1,5 @@
 class SecuritiesController < ApplicationController
+
   def new
     @security = Security.new
   end
@@ -18,6 +19,6 @@ class SecuritiesController < ApplicationController
     @rsi = indicator.get_rsi(indicators, 29)
     @sto = indicator.get_sto(indicators, 14, 3, 5)
 
-    @sup_resist = indicator.get_sup_resist(symbol, 120, 10, 1)
+    @sup_resist = indicator.get_sup_resist(symbol, 100, 15, 1.3)
   end
 end
