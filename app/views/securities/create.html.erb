@@ -45,7 +45,7 @@
     <h4>Full: <%= @sto[2].round(2) %> %</h4><br/>
     <h4>Support and Resistance</h4>
       <% @sup_resist.each do |price, strength| %>
-        <%= "#{price}, #{strength} strength" %><br/>
+        <h4><%= "#{price}, #{strength} strength" %><h4/><br/>
       <% end %>
   </div>
 </div>
