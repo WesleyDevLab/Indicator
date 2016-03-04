@@ -29,7 +29,7 @@ class Indicator < ActiveRecord::Base
     security = Security.new
 
     # Get historical data
-    history_arr = security.get_history(symbol, period)
+    history_arr = security.get_price_history(symbol, period)
 
     # Extract the prices from the historical quotes
     price_arr = []

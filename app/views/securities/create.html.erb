@@ -3,22 +3,22 @@
 <div class="stock-info col-xs-8 col-xs-offset-2">
   <br/>
   <div class="col-xs-8 col-xs-offset-2">
-    <h1><%= @quote.name %></h1><br/>
-    <h4>Symbol: <%= @quote.symbol %></h4>
-    <h4>Exchange: <%= @quote.stock_exchange %></h4>
-    <h4>Last Trade: <%= @quote.last_trade_price_only %></h4>
-    <h4>Change: <%= @quote.change %></h4>
-    <h4>Change: <%= @quote.percent_change %></h4>
-    <h4>Low: <%= @quote.days_low %></h4>
-    <h4>High: <%= @quote.days_high %></h4>
-    <h4>Open: <%= @quote.open %></h4>
-    <h4>Volume: <%= @quote.volume %></h4>
-    <h4>Averge Daily Volume: <%= @quote.average_daily_volume %></h4>
-    <h4>Market Cap:<%= @quote.market_capitalization %></h4>
-    <h4>PE Ratio: <%= @quote.pe_ratio %></h4>
-    <h4>Earnings per share: <%= @quote.earnings_share %></h4>
-    <h4>50 Day Moving Average: <%= @quote.fiftyday_moving_average %></h4>
-    <h4>200 Day Moving Average: <%= @quote.two_hundredday_moving_average %></h4>
+    <h1><%= @stock.name %></h1><br/>
+    <h4>Symbol: <%= @stock.symbol %></h4>
+    <h4>Exchange: <%= @stock.stock_exchange %></h4>
+    <h4>Last Trade: <%= @stock.last_trade_price_only %></h4>
+    <h4>Change: <%= @stock.change %></h4>
+    <h4>Change: <%= @stock.percent_change %></h4>
+    <h4>Low: <%= @stock.days_low %></h4>
+    <h4>High: <%= @stock.days_high %></h4>
+    <h4>Open: <%= @stock.open %></h4>
+    <h4>Volume: <%= @stock.volume %></h4>
+    <h4>Averge Daily Volume: <%= @stock.average_daily_volume %></h4>
+    <h4>Market Cap:<%= @stock.market_capitalization %></h4>
+    <h4>PE Ratio: <%= @stock.pe_ratio %></h4>
+    <h4>Earnings per share: <%= @stock.earnings_share %></h4>
+    <h4>50 Day Moving Average: <%= @stock.fiftyday_moving_average %></h4>
+    <h4>200 Day Moving Average: <%= @stock.two_hundredday_moving_average %></h4>
   </div>
 </div> 
 <br class="clear" />
@@ -49,3 +49,37 @@
       <% end %>
   </div>
 </div>
+<br class="clear" />
+<br/>
+<br/>
+<script>
+$(function () {
+
+    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+        // Create the chart
+        $('#container').highcharts('StockChart', {
+
+
+            rangeSelector : {
+                selected : 1
+            },
+
+            title : {
+                text : gon.title
+            },
+
+            series : [{
+                name : gon.symbol,
+                data : gon.prices,
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }]
+        });
+    });
+
+});
+</script>
+<div class="col-xs-8 col-xs-offset-2" id="container" style="height: 400px; width: 800px"></div>
+<br/>
+<br/>
