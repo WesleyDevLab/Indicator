@@ -15,8 +15,4 @@ class Security < ActiveRecord::Base
     end
     return chart_data
   end
-
-  def get_indicators(history)
-    Indicators::Data.new(history.output)
-  end
 end

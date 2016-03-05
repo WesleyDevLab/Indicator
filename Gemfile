@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
-
+ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
-# Use sqlite3 as the database for Active Record
+gem 'rails', '4.2.5.1'
+
+# Use postgresql as the database for Active Record
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -37,7 +39,6 @@ gem 'simple_form'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'pg'
 end
 
 group :development do
@@ -49,7 +50,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
 end
 
 gem 'bootstrap-sass', '~> 3.3.4'

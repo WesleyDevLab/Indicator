@@ -1,26 +1,30 @@
 class Indicator < ActiveRecord::Base
 
-  def get_sma(indictors, period)
+  def set_indicator_data(history)
+    Indicators::Data.new(history.output)
+  end
+
+  def get_sma(indicator_data, period)
     indicators.calc(:type => :sma, :params => period).output.last
   end
 
-  def get_ema(indicators, period)
+  def get_ema(indicator_data, period)
     indicators.calc(:type => :ema, :params => period).output.last
   end
 
-  def get_bb(indicators, period, multiplier)
+  def get_bb(indicator_data, period, multiplier)
     indicators.calc(:type => :bb, :params => [period, multiplier]).output.last
   end
 
-  def get_macd(indicators, fast, slow, signal)
+  def get_macd(indicator_data, fast, slow, signal)
     @macd = indicators.calc(:type => :macd, :params => [fast, slow, signal]).output.last
   end
   
-  def get_rsi(indicators, period)
+  def get_rsi(indicator_data, period)
     @rsi = indicators.calc(:type => :rsi, :params => period).output.last
   end
    
-  def get_sto(indicators, lookback, slow_k, d_ma) 
+  def get_sto(indicator_data, lookback, slow_k, d_ma) 
     @sto = indicators.calc(:type => :sto, :params => [lookback, slow_k, d_ma]).output.last
   end
 
