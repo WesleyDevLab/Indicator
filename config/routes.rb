@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'securities#new'
+  devise_for :users
+  root 'quotes#new'
 
-  resource :securities, only: [:new, :create]
+  resource :quotes, only: [:new, :create]
 
   # get 'securities/show', to: 'securities#show', as: 'securities/show'
   # The priority is based upon order of creation: first created -> highest priority.

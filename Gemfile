@@ -59,5 +59,7 @@ gem 'stock_quote'
 gem 'chartkick'
 gem 'groupdate'
 gem 'active_median'
-gem 'highstock-rails'
-gem 'gon'
+gem 'highstock-rails' # includes Highstock as an asset in the asset pipeline
+gem 'gon' # Pass data to JavaScript 
+gem 'devise'
+gem 'simple_form'

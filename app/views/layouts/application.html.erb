@@ -28,7 +28,7 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="#">Link</a></li> -->
       </ul>
-      <%= form_tag securities_path, :class => 'navbar-form navbar-right' do %>
+      <%= form_tag quotes_path, :class => 'navbar-form navbar-right' do %>
         <%= text_field_tag :symbol, nil, 
           {:class => "search-query form-control", :placeholder => "Symbol"} %>
         <%= submit_tag "Analyze", :class => "btn btn-default" %>
@@ -36,6 +36,9 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
 
