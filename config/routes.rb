@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'quotes#new'
 
   resource :quotes, only: [:new, :create]
+  resources :trades, only: [:index, :new, :create]
 
   # get 'securities/show', to: 'securities#show', as: 'securities/show'
   # The priority is based upon order of creation: first created -> highest priority.

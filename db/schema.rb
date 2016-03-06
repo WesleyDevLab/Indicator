@@ -21,47 +21,24 @@ ActiveRecord::Schema.define(version: 20160305215632) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "investments", force: :cascade do |t|
+  create_table "quotes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trades", force: :cascade do |t|
     t.boolean  "bullish"
     t.string   "underlying"
-    t.boolean  "call"
+    t.string   "option_type"
     t.integer  "short_strike_price"
     t.integer  "long_strike_price"
     t.date     "expiration"
     t.integer  "quantity"
     t.float    "open_price"
     t.float    "close_price"
-    t.integer  "portfolio_id"
+    t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-  end
-
-  create_table "portfolios", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "quotes", force: :cascade do |t|
-    t.date     "date"
-    t.float    "open"
-    t.float    "high"
-    t.float    "low"
-    t.float    "close"
-    t.integer  "volume"
-    t.integer  "security_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "quotes", ["security_id"], name: "index_quotes_on_security_id", using: :btree
-
-  create_table "securities", force: :cascade do |t|
-    t.string   "symbol"
-    t.string   "name"
-    t.string   "industry"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
