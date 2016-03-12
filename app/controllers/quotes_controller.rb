@@ -13,10 +13,8 @@ class QuotesController < ApplicationController
     begin
       @stock = quote.get_stock_info(symbol) # Get stock's company data
       price_history = quote.get_price_history(symbol, 720) # Get historical prices for 60 periods
-
     rescue
-      alert = "#{symbol} not found"
-      redirect home_path
+      return redirect_to root_path, :alert => "Symbol \"#{symbol}\" not found"
     end
 
     # Pass data to JavaScript
