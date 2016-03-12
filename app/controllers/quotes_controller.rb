@@ -12,7 +12,7 @@ class QuotesController < ApplicationController
     # Call Yahoo finance API
     begin
       @stock = quote.get_stock_info(symbol) # Get stock's company data
-      price_history = quote.get_price_history(symbol, 60) # Get historical prices for 60 periods
+      price_history = quote.get_price_history(symbol, 720) # Get historical prices for 60 periods
 
     rescue
       alert = "#{symbol} not found"
@@ -21,7 +21,7 @@ class QuotesController < ApplicationController
 
     # Pass data to JavaScript
     gon.prices = quote.get_chart_data(price_history)
-    gon.symbol = symbol
+    gon.symbol = symbol.upcase!
     gon.title = "#{@stock.name} (#{symbol})"
 
     # Calculate indicators

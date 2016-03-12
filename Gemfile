@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-
 ruby '2.3.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 
@@ -56,9 +56,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'securities'
 gem 'indicators'
 gem 'stock_quote'
-gem 'chartkick'
-gem 'groupdate'
-gem 'active_median'
 gem 'highstock-rails' # includes Highstock as an asset in the asset pipeline
 gem 'gon' # Pass data to JavaScript 
 gem 'devise'
+gem 'rails_12factor'

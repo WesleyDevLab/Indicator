@@ -1,9 +1,9 @@
 <div class="home-page col-xs-8 col-xs-offset-2 ">
-  <h1>Providing Stock Technical Indicators</h1>
+  <h1>Stock Technical Indicators</h1>
   <br/>
   <%= form_tag quotes_path, :class => 'navbar-form navbar-center' do %>
   <%= text_field_tag :symbol, nil, 
-    {:class => "search-query form-control", :placeholder => "Symbol"} %>
+    {:class => "search-query form-control", :placeholder => "Enter Symbol"} %>
   <%= submit_tag "Analzye", :class => "btn btn-default" %>
   <% end %>
 </div>

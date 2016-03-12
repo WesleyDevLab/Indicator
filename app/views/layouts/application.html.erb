@@ -20,7 +20,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'indicator', root_url, :class => 'navbar-brand' %>
+      <%= link_to 'Indicator', root_url, :class => 'navbar-brand' %>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,7 +37,7 @@
       </ul>
       <%= form_tag quotes_path, :class => 'navbar-form navbar-right' do %>
         <%= text_field_tag :symbol, nil, 
-          {:class => "search-query form-control", :placeholder => "Symbol"} %>
+          {:class => "search-query form-control", :placeholder => "Enter Symbol"} %>
         <%= submit_tag "Analyze", :class => "btn btn-default" %>
       <% end %>
     </div><!-- /.navbar-collapse -->

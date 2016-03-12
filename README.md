@@ -1,3 +1,3 @@
-## Indicator: Technical analysis for the stock market made simple!
+## Indicator: providing stock technical indicators
 
 http://www.indicator.tech
